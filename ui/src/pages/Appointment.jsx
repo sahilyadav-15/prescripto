@@ -9,6 +9,8 @@ const DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 // --------- HELPER FUNCTIONS (clean & reusable) ---------
 
+function BookingModal() {}
+
 const roundToNext30Minutes = (date) => {
   const minutes = date.getMinutes();
 
@@ -89,6 +91,10 @@ const Appointment = () => {
     const found = doctors.find((doc) => doc._id === docId);
     setDocInfo(found || null);
   }, [doctors, docId]);
+
+  const bookAppointment = () => {
+    console.log(slotIndex, slotTime);
+  };
 
   // ---- GENERATE SLOTS ONCE DOCTOR LOADS ----
   useEffect(() => {
@@ -192,7 +198,10 @@ const Appointment = () => {
             ))}
         </div>
 
-        <button className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6">
+        <button
+          className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6"
+          onClick={bookAppointment}
+        >
           Book an appointment
         </button>
       </div>
