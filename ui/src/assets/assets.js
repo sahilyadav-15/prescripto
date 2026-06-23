@@ -62,32 +62,26 @@ export const assets = {
 export const specialityData = [
   {
     speciality: "General physician",
-    dept_id: 0,
     image: General_physician,
   },
   {
     speciality: "Gynecologist",
-    dept_id: 1,
     image: Gynecologist,
   },
   {
     speciality: "Dermatologist",
-    dept_id: 2,
     image: Dermatologist,
   },
   {
     speciality: "Pediatricians",
-    dept_id: 3,
     image: Pediatricians,
   },
   {
     speciality: "Neurologist",
-    dept_id: 4,
     image: Neurologist,
   },
   {
     speciality: "Gastroenterologist",
-    dept_id: 5,
     image: Gastroenterologist,
   },
 ];
@@ -342,4 +336,13 @@ export const deptBtnData = [
   { id: 3, name: "Pediatricians" },
   { id: 4, name: "Neurologist" },
   { id: 5, name: "Gastroenterologist" },
+];
+
+export const departments = [
+  "General physician",
+  "Gynecologist",
+  "Dermatologist",
+  "Pediatricians",
+  "Neurologist",
+  "Gastroenterologist",
 ];

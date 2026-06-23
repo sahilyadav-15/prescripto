@@ -1,22 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import { deptBtnData } from "../assets/assets";
+import { departments } from "../assets/assets";
 
 const Doctors = () => {
-  const { dept_id } = useParams();
+  const { speciality } = useParams();
   const [filterDoc, setFilterDoc] = useState([]);
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
   const { doctors } = useContext(AppContext);
 
-  useEffect(() => {
-    if (dept_id) {
-      setFilterDoc(doctors.filter((doc) => doc.dept_id == dept_id));
+  const applyFilter = () => {
+    if (speciality) {
+      setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
     } else {
       setFilterDoc(doctors);
     }
-  }, [doctors, dept_id]);
+  };
+
+  useEffect(() => {
+    applyFilter();
+  }, [doctors, speciality]);
 
   return (
     <div>
@@ -31,21 +36,17 @@ const Doctors = () => {
         <div
           className={`flex-col gap-4 text-sm text-gray-600 ${showFilter ? "flex" : "hidden sm:flex"}`}
         >
-          {deptBtnData.map((item) => (
+          {departments.map((dept) => (
             <p
-              key={item.id}
+              key={dept}
               onClick={() =>
-                dept_id == item.id
+                speciality === dept
                   ? navigate("/doctors")
-                  : navigate(`/doctors/${item.id}`)
+                  : navigate(`/doctors/${dept}`)
               }
-              className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer  ${
-                dept_id == item.id
-                  ? "bg-indigo-100 text-black"
-                  : "hover:bg-indigo-50"
-              }`}
+              className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality === dept && "bg-indigo-50"}`}
             >
-              {item.name}
+              {dept}
             </p>
           ))}
         </div>
